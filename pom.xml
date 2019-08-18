@@ -12,7 +12,12 @@
     <artifactId>start</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>start</name>
-    <description>Demo project for Spring Boot</description>
+    <description>需要启动的测试项目综合大项目</description>
+
+    <modules>
+        <module>test</module>
+        <module>dubbo-parent</module>
+    </modules>
 
     <properties>
         <java.version>1.8</java.version>
