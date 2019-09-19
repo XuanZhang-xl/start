@@ -17,6 +17,7 @@
     <modules>
         <module>test</module>
         <module>dubbo-parent</module>
+        <module>springboot2</module>
     </modules>
 
     <properties>
