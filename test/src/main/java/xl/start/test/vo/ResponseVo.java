@@ -63,6 +63,10 @@ public class ResponseVo<T> {
         return new ResponseVo().fail(errorCode);
     }
 
+    public static ResponseVo buildFail(String message) {
+        return new ResponseVo().fail(message);
+    }
+
     public ResponseVo success(T data) {
         this.setData(data);
         this.success = true;
@@ -89,6 +93,13 @@ public class ResponseVo<T> {
         this.success = false;
         this.code = errorCode.getCode();
         this.msg = errorCode.getMsg();
+        return this;
+    }
+
+    public ResponseVo fail(String message) {
+        this.success = false;
+        this.code = ErrorCode.FAIL.getCode();
+        this.msg = message;
         return this;
     }
 }
