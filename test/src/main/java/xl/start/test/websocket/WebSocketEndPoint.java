@@ -83,6 +83,16 @@ public class WebSocketEndPoint {
         this.session.getAsyncRemote().sendText(message);
     }
 
+    /**
+     * 可以通过这个方法+mysql存储的方式来实现实时通知页面
+     *
+     * 状态更新: 更新mysql+实时通知页面
+     * 页面刷新: 前端主动查询后查找mysql返回
+     *
+     * @param message
+     * @param to
+     * @throws IOException
+     */
     public static void sendMessageToAnyone(String message, String to) throws IOException {
         WebSocketEndPoint webSocketEndPoint = clients.get(to);
         if (webSocketEndPoint == null) {
