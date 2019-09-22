@@ -1,7 +1,9 @@
 package xl.start.springboot2;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 
 /**
@@ -13,7 +15,13 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 public class Springboot2Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(Springboot2Application.class, args);
+        // 都等价
+        new SpringApplication(Springboot2Application.class).run(args);
+        //new SpringApplicationBuilder(Springboot2Application.class)
+        //        // 行为控制, 使web相关配置无效
+        //        .web(WebApplicationType.NONE)
+        //        .run(args);
+        //SpringApplication.run(Springboot2Application.class, args);
     }
 
 }
