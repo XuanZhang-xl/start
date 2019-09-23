@@ -180,7 +180,42 @@ public @interface EnableCaching {}
 
 ### 自定义条件装配
 
-#### 基于配置方式实现
+#### 基于配置方式实现 - `@Profile`
+
+#### 基于编程方式实现 - `@ConditionalOnSystemProperty`
+
+
+
+## Spring boot 自动装配
+
+在spring boot 场景下, 基于约定大于配置的原则, 实现spring 组件自动装配的目的. 其中使用了
+
+
+
+### 底层装配技术
+
+- spring模式注解装配
+- spring `@Eable` 模块装配
+- spring 条件装配装配
+- spring 工厂加载机制
+  - 实现类: `SpringFactoriesLoader`
+  - 配置资源: `MATE-INF/spring-factories`
+
+### 自动装配举例
+
+参考 `MATE-INF/spring-factories`
+
+
+
+### 实现方法
+
+1. 激活自动装配 - `@EnableAutoConfiguration`
+2. 实现自动装配实现类 - `XXXAutoConfiguration`
+3. 配置自动装配实现类至 `MATE-INF/spring-factories` 参考`spring-boot-autoconfigure`下的`MATE-INF/spring-factories`
+
+
+
+#### 自定义自动装配
 
 
 
