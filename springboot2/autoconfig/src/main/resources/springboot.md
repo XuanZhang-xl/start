@@ -216,8 +216,19 @@ public @interface EnableCaching {}
 
 
 #### 自定义自动装配
+`HelloWorldAutoConfiguration`
+
+-   判断条件: `user.name == "MSI-PC"`
+-   模式注解: `@Configuration`
+-   `@Enable`模块: `@EnableHelloWorld` -> `HelloWorldImportSelector` -> `HelloWorldConfiguration` -> `HelloWorld`
 
 
+# 理解SpringApplication
+
+## `SpringApplication`运行
+```java
+
+```
 
 
 
@@ -227,7 +238,7 @@ public @interface EnableCaching {}
 
 - JDBC: 数据源,` JDBCTemplate`, 自动装配
 
-  - ```java
+  - ```
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-jdbc</artifactId>
@@ -240,7 +251,7 @@ public @interface EnableCaching {}
 
 - JPA: 实体映射关系, 实体操作, 自动装配
 
-  - ```java
+  - ```
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-data-jpa</artifactId>
