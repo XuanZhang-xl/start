@@ -1,5 +1,0 @@
-
-
-# auto configuration
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-xl.start.springboot2.configuration.HelloWorldAutoConfiguration
