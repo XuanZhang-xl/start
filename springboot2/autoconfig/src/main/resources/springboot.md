@@ -226,9 +226,48 @@ public @interface EnableCaching {}
 # 理解SpringApplication
 
 ## `SpringApplication`运行
-```java
-
+``` java
+    public static void main(String[] args) {
+        SpringApplication.run(Springboot2AutoconfigApplication.class, args);
+    }
 ```
+
+## 自定义`SpringApplication`
+
+### 通过`SpringApplication`Api调整
+``` java
+SpringApplication springApplication = SpringApplication(Springboot2AutoconfigApplication.class);
+springApplication.setBannerMode(Banner.Mode.CONSOLE);
+springApplication.setWebApplicationType(WebApplicaitonType.NONE);
+springApplication.setAdditionalProfiles("prod");
+springApplication.setHeadless(true);
+```
+
+### 通过`SpringApplicationBuilder`Api调整
+``` java
+new SpringApplicationBuilder(Springboot2AutoconfigApplication.class)
+    .bannerMode(Banner.Mode.CONSOLE);
+    .webApplicationType(WebApplicaitonType.NONE)
+    .additionalProfiles("prod")
+    .headless(true)
+    .run(args);
+```
+
+## `SpringApplication`准备阶段
+### 配置Springboot bean源
+
+[java配置class] 或 [xml上下文配置文件集合], 用于springboot `BeanDefinitionLoader`读取, 并且将配置源解析加载为 spring bean 
+
+-   数量: 一个或多个
+
+### java配置class
+用于spring注解驱动中java配置类, 大多数情况是spring模式注解所标注的类, 如@Configuration
+
+### xml上下文配置文件集合
+用于spring 传统配置驱动中的xml文件
+
+## 推断web应用类型
+根据当前应用classpath中是否存在相关实现类来推断web应用的类型, 包括:
 
 
 
@@ -238,7 +277,7 @@ public @interface EnableCaching {}
 
 - JDBC: 数据源,` JDBCTemplate`, 自动装配
 
-  - ```
+  - ``` java
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-jdbc</artifactId>
@@ -251,7 +290,7 @@ public @interface EnableCaching {}
 
 - JPA: 实体映射关系, 实体操作, 自动装配
 
-  - ```
+  - ``` java
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-data-jpa</artifactId>
