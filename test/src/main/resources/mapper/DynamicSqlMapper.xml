@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="xl.start.test.mapper.DynamicSqlMapper" >
+
+	<select id="dynamicSqlConcat" resultType="java.util.Map">
+		SELECT
+		tmp.shop_id as shopId,
+		<if test="pairDate != null and pairDate.size()>0">
+			<foreach item="pair" collection="formatPairDate" open="" separator="" close="">
+				tmp_${pair.beginDate}_${pair.endDate}.acc_sale_count as acc_sale_count_${pair.beginDate}_${pair.endDate},
+				tmp_${pair.beginDate}_${pair.endDate}.acc_pay_amount as acc_pay_amount_${pair.beginDate}_${pair.endDate},
+				tmp_${pair.beginDate}_${pair.endDate}.avg_sale_count as avg_sale_count_${pair.beginDate}_${pair.endDate},
+				tmp_${pair.beginDate}_${pair.endDate}.avg_pay_amount as avg_pay_amount_${pair.beginDate}_${pair.endDate},
+			</foreach>
+		</if>
+		tmp.goods_no as goodsNo
+		FROM t_decision_tmp as tmp
+		<if test="pairDate != null and pairDate.size()>0">
+			<foreach item="pair" collection="formatPairDate" open="" separator="" close="">
+				LEFT JOIN t_decision_tmp as tmp_${pair.beginDate}_${pair.endDate}
+				on tmp.goods_no = tmp_${pair.beginDate}_${pair.endDate}.goods_no
+				and tmp_${pair.beginDate}_${pair.endDate}.begin_time = #{pair.beginDate}
+				and tmp_${pair.beginDate}_${pair.endDate}.end_time = #{pair.endDate}
+			</foreach>
+		</if>
+	</select>
+</mapper>
