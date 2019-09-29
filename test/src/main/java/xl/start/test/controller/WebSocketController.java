@@ -1,11 +1,16 @@
 package xl.start.test.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.messaging.simp.annotation.SendToUser;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import xl.start.test.vo.ResponseVo;
+import xl.start.test.vo.ws.Greeting;
 import xl.start.test.websocket.WebSocketEndPoint;
 
 import javax.annotation.Resource;
@@ -23,7 +28,8 @@ import java.util.concurrent.ThreadPoolExecutor;
 public class WebSocketController {
 
 
-    @Resource
+    @Autowired
+    @Qualifier("ws")
     private ThreadPoolTaskExecutor executor;
 
     /**

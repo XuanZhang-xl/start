@@ -63,17 +63,27 @@
         $("#greetings").html("");
     }
 
+    // STOMP文档: http://jmesnil.net/stomp-websocket/doc/
     function connect() {
         // 一切连接都是基于这个websocket连接
-        var socket = new SockJS('/gs-guide-websocket');
+        var socket = new SockJS('/gs-guide-websocket?user=1');
         // 在websocket之上建立stomp
         stompClient = Stomp.over(socket);
-        stompClient.connect({}, function (frame) {
+        stompClient.connect({"user":1}, function (frame) {
             setConnected(true);
+            console.log('Connected: ' + true);
             console.log('Connected: ' + frame);
             // 连接成功后, 监听 /topic/greetings
-            // TODO: 如果有多个客户端都监听, 会一起收到?
             stompClient.subscribe('/topic/greetings', function (greeting) {
+                console.log("/topic/greetings   receive message " + greeting);
+                showGreeting(JSON.parse(greeting.body).content);
+            });
+            stompClient.subscribe('/user/queue/greetings', function (greeting) {
+                console.log("/user/queue/greetings   receive message " + greeting);
+                showGreeting(JSON.parse(greeting.body).content);
+            });
+            stompClient.subscribe('/queue/greetings', function (greeting) {
+                console.log("/queue/greetings   receive message " + greeting);
                 showGreeting(JSON.parse(greeting.body).content);
             });
         });

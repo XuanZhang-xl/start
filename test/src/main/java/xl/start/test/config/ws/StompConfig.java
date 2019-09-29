@@ -1,7 +1,9 @@
 package xl.start.test.config.ws;
 
+import com.alibaba.fastjson.JSONObject;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.server.ServerHttpRequest;
+import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.http.server.ServletServerHttpRequest;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 import org.springframework.util.StringUtils;
@@ -9,6 +11,8 @@ import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
+import org.springframework.web.socket.server.HandshakeFailureException;
+import org.springframework.web.socket.server.HandshakeHandler;
 import org.springframework.web.socket.server.support.DefaultHandshakeHandler;
 
 import javax.servlet.http.HttpServletRequest;
@@ -41,6 +45,8 @@ public class StompConfig implements WebSocketMessageBrokerConfigurer {
         config.enableSimpleBroker("/topic", "/queue");
         // 所有请求到这个ws的路径都要加app前缀
         config.setApplicationDestinationPrefixes("/app");
+        // user级别的监听路径都要加 /user
+        config.setUserDestinationPrefix("/user");
     }
 
     /**
@@ -52,7 +58,29 @@ public class StompConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         // 建立一个路径为 /gs-guide-websocket 的websocket服务端
-        registry.addEndpoint("/gs-guide-websocket").withSockJS();
+        registry.addEndpoint("/gs-guide-websocket")
+                .setHandshakeHandler(new DefaultHandshakeHandler() {
+                            protected Principal determineUser(ServerHttpRequest request, WebSocketHandler wsHandler, Map<String, Object> attributes) {
+                                System.out.println("新客户端连接, 设置Principal");
+                                System.out.println("原Principal: " + request.getPrincipal());
+                                if (request instanceof ServletServerHttpRequest) {
+                                    ServletServerHttpRequest servletServerHttpRequest = (ServletServerHttpRequest) request;
+                                    HttpServletRequest httpRequest = servletServerHttpRequest.getServletRequest();
+                                    final String user = httpRequest.getParameter("user");
+                                    if (StringUtils.isEmpty(user)) {
+                                        return null;
+                                    }
+                                    return new Principal() {
+                                        @Override
+                                        public String getName() {
+                                            return user;
+                                        }
+                                    };
+                                }
+                                return null;
+                            }
+                })
+                .withSockJS();
     }
 
 
