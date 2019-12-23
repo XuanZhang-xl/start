@@ -3,12 +3,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.7.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <groupId>xl.start</groupId>
+        <artifactId>springboot2</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <groupId>xl.start</groupId>
     <artifactId>springboot2-autoconfig</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>springboot2-autoconfig</name>
@@ -16,18 +14,19 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <!--当一个项目有多个 @SpringBootApplication 时, 需要指定启动类-->
+        <start-class>xl.start.springboot2autoconfig.Springboot2AutoconfigApplication</start-class>
     </properties>
 
     <dependencies>
+        <!--以 jar -jar 启动时的引导类-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
+            <artifactId>spring-boot-loader</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
+            <artifactId>spring-boot-loader-tools</artifactId>
         </dependency>
     </dependencies>
 
