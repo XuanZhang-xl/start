@@ -28,6 +28,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-loader-tools</artifactId>
         </dependency>
+
+        <!--测试模块装配, 这个模块的springboot为2.2.2, 所以标注<optional>true</optional>, 否则可能引起不兼容-->
+        <dependency>
+            <groupId>thinking-in-spring-boot</groupId>
+            <artifactId>formatter-spring-boot-starter</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
     <build>

@@ -1,3 +1,4 @@
 # auto configuration
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-xl.start.springboot2autoconfig.configuration.HelloWorldAutoConfiguration
+xl.start.springboot2autoconfig.configuration.HelloWorldAutoConfiguration,\
+thinking.in.spring.boot.samples.autoconfigure.formatter.FormatterAutoConfiguration
