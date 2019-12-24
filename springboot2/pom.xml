@@ -34,16 +34,16 @@
         <!--如果只有上面 spring-boot-starter, spring-boot-starter-test 这两个依赖, 那么一启动就退出, 因为没有装配tomcat等容器-->
 
         <!--web方面依赖, 导入此依赖, 通过自动配置, 就可以使用tomcat.servlet等功能-->
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-web</artifactId>-->
-        <!--</dependency>-->
-
-        <!--使用webflux, 这个优先级比上面的spring-boot-starter-web低, 所以必须把spring-boot-starter-web注释, webflux才会生效-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-webflux</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
+        <!--使用webflux, 这个优先级比上面的spring-boot-starter-web低, 所以必须把spring-boot-starter-web注释, webflux才会生效-->
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-starter-webflux</artifactId>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

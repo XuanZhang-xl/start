@@ -10,7 +10,7 @@ import xl.start.springboot2autoconfig.service.CalculateService;
  * @author XUAN
  * @since 2019/09/22
  */
-@SpringBootApplication(scanBasePackages = "xl.start.springboot2.service")
+@SpringBootApplication(scanBasePackages = "xl.start.springboot2autoconfig.service")
 public class CalculateServiceBootstrap {
 
     public static void main(String[] args) {
