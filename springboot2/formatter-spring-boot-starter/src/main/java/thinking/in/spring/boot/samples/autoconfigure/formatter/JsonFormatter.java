@@ -14,6 +14,10 @@ public class JsonFormatter implements Formatter {
         this.objectMapper = new ObjectMapper();
     }
 
+    public JsonFormatter(ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper;
+    }
+
     @Override
     public String format(Object object) {
         try {

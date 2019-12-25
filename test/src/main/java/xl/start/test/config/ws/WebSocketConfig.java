@@ -21,12 +21,13 @@ import xl.start.test.websocket.WebSocketEndPoint;
 @EnableWebSocket
 public class WebSocketConfig implements WebSocketConfigurer {
 
-    @Bean
-    public ServerEndpointExporter serverEndpointExporter() {
-        ServerEndpointExporter serverEndpointExporter = new ServerEndpointExporter();
-        serverEndpointExporter.setAnnotatedEndpointClasses(WebSocketEndPoint.class);
-        return serverEndpointExporter;
-    }
+    // TODO: 这个bean报错
+    //@Bean
+    //public ServerEndpointExporter serverEndpointExporter() {
+    //    ServerEndpointExporter serverEndpointExporter = new ServerEndpointExporter();
+    //    serverEndpointExporter.setAnnotatedEndpointClasses(WebSocketEndPoint.class);
+    //    return serverEndpointExporter;
+    //}
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {

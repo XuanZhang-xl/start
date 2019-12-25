@@ -19,7 +19,7 @@
     </properties>
 
     <dependencies>
-        <!--以 jar -jar 启动时的引导类-->
+        <!--以 java -jar 启动时的引导类-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-loader</artifactId>
@@ -29,21 +29,31 @@
             <artifactId>spring-boot-loader-tools</artifactId>
         </dependency>
 
-        <!--测试模块装配, 这个模块的springboot为2.2.2, 所以标注<optional>true</optional>, 否则可能引起不兼容-->
+        <!--如果只有 spring-boot-starter, spring-boot-starter-test 这两个依赖, 那么一启动就退出, 因为没有装配tomcat等容器-->
+        <!--擦, spring-boot-starter-web竟然依赖于 jackson-->
+        <!--web方面依赖, 导入此依赖, 通过自动配置, 就可以使用tomcat.servlet等功能-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!--使用webflux, 这个优先级比上面的spring-boot-starter-web低, 所以必须把spring-boot-starter-web注释, webflux才会生效-->
+        <!--<dependency>-->
+        <!--<groupId>org.springframework.boot</groupId>-->
+        <!--<artifactId>spring-boot-starter-webflux</artifactId>-->
+        <!--</dependency>-->
+
+        <!--擦, spring-boot-starter-web竟然也依赖于 jackson-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>thinking-in-spring-boot</groupId>
             <artifactId>formatter-spring-boot-starter</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
-
 </project>

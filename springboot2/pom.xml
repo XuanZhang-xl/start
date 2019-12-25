@@ -17,7 +17,13 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <spring-boot.version>2.1.7.RELEASE</spring-boot.version>
     </properties>
+
+    <modules>
+        <module>formatter-spring-boot-starter</module>
+        <module>autoconfig</module>
+    </modules>
 
     <dependencies>
         <dependency>
@@ -30,35 +36,34 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
-        <!--如果只有上面 spring-boot-starter, spring-boot-starter-test 这两个依赖, 那么一启动就退出, 因为没有装配tomcat等容器-->
-
-        <!--web方面依赖, 导入此依赖, 通过自动配置, 就可以使用tomcat.servlet等功能-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <!--使用webflux, 这个优先级比上面的spring-boot-starter-web低, 所以必须把spring-boot-starter-web注释, webflux才会生效-->
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-webflux</artifactId>-->
-        <!--</dependency>-->
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
+    <!--这个打包插件不加可正常打包但不是FAT-JAR, 加了的话, 如果模块中有依赖别的模块, 则打包失败, why????????-->
+    <!--<build>-->
+        <!--<plugins>-->
+            <!--<plugin>-->
+                <!--<groupId>org.springframework.boot</groupId>-->
+                <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+            <!--</plugin>-->
+        <!--</plugins>-->
+    <!--</build>-->
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- Spring Boot POM -->
+            <dependency>
                 <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>2.9.9</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 </project>
