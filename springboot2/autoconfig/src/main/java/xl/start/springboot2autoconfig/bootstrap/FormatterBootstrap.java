@@ -11,6 +11,28 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * 根据依赖模块不同而实例化不同实现类的测试
+ *
+ * 如果formatter-spring-boot-starter 依赖
+ *
+ *         <dependency>
+ *             <groupId>com.alibaba</groupId>
+ *             <artifactId>fastjson</artifactId>
+ *             <version>1.2.41</version>
+ *             <optional>true</optional>
+ *         </dependency>
+ *
+ * 则注入DefaultFormatter
+ *
+ * 如果依赖
+ *
+ *         <dependency>
+ *             <groupId>com.alibaba</groupId>
+ *             <artifactId>fastjson</artifactId>
+ *             <version>1.2.41</version>
+ *         </dependency>
+ * 则注入FastJsonFormatter
+ *
  * created by XUAN on 2019/12/24
  */
 @EnableAutoConfiguration
