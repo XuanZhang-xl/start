@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>xl.start</groupId>
+        <artifactId>aop</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <artifactId>aop-agent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>aop-agent</name>
+    <description>Java Agent 代理项目</description>
+
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifestEntries>
+                            <Premain-Class>xl.start.aopagent.PerfMonAgent</Premain-Class>
+                            <!--<Boot-Class-Path>C:\Users\jm006993\.m2\repository\org\javassist\javassist\3.20.0-GA\javassist-3.20.0-GA.jar</Boot-Class-Path>-->
+                            <Boot-Class-Path>D:\03_java\01_jarPagkage\maven\repository\org\javassist\javassist\3.20.0-GA\javassist-3.20.0-GA.jar</Boot-Class-Path>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
