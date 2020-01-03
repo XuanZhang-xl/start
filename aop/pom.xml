@@ -31,4 +31,19 @@
             <scope>compile</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <!--相对路径貌似只能输出到子项目内-->
+                    <outputDirectory>
+                        D:\05_workPlace\06_idea\ideaworkplace\start\aop\javaagent
+                    </outputDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

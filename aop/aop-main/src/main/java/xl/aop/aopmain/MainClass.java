@@ -18,6 +18,8 @@ public class MainClass {
     }
 
     public void print () {
-        System.out.println("xl.aop.aopmain.MainClass#print() 已执行");
+        String className = this.getClass().getName();
+        String methodName = new Exception().getStackTrace()[0].getMethodName();
+        System.out.println(className + "." + methodName + "() 已执行");
     }
 }

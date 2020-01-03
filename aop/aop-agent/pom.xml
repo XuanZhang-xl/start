@@ -33,8 +33,8 @@
                     <archive>
                         <manifestEntries>
                             <Premain-Class>xl.start.aopagent.PerfMonAgent</Premain-Class>
-                            <!--<Boot-Class-Path>C:\Users\jm006993\.m2\repository\org\javassist\javassist\3.20.0-GA\javassist-3.20.0-GA.jar</Boot-Class-Path>-->
-                            <Boot-Class-Path>D:\03_java\01_jarPagkage\maven\repository\org\javassist\javassist\3.20.0-GA\javassist-3.20.0-GA.jar</Boot-Class-Path>
+                            <Boot-Class-Path>javassist-3.20.0-GA.jar</Boot-Class-Path>
+                            <!--<Boot-Class-Path>D:\03_java\01_jarPagkage\maven\repository\org\javassist\javassist\3.20.0-GA\javassist-3.20.0-GA.jar</Boot-Class-Path>-->
                         </manifestEntries>
                     </archive>
                 </configuration>
